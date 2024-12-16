@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger('dep_id');
-            $table->foreign('dep_id')->references('id')->on('department');
-            $table->unsignedBigInteger('desg_id');
-            $table->foreign('desg_id')->references('id')->on('designation');
+            $table->unsignedBigInteger('department_id');
+            $table->foreign('department_id')->references('id')->on('department');
+            $table->unsignedBigInteger('designation_id');
+            $table->foreign('designation_id')->references('id')->on('designation');
             $table->string('phone_number');
             $table->timestamps();
         });

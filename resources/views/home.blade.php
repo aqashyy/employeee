@@ -7,6 +7,7 @@
     <title>Employee</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <div class="container">
@@ -14,11 +15,26 @@
     <div class="row mt-5 d-flex justify-content-center align-items-center">
         <div class="col-md-6">
             <div class="form">
-                <label for="search">Search</label>
-                <input type="text" id="searchBox" class="form-control form-input" name="search" placeholder="Search name/designation/department">
+                <label for="key">Search</label>
+                <input type="text" id="searchBox" class="form-control form-input" name="key" placeholder="Search name/designation/department">
             </div>
-            <div class="row mt-4">
+            <div id="result" class="row mt-4">
+                @if ($users)
+                @foreach ($users as $user)
                 <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $user->name }}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{ $user->department->name }}</h6>
+                            <p class="card-text">{{ $user->designation->name }}</p>
+
+                          </div>
+                    </div>
+                </div>
+                @endforeach
+                @endif
+
+                {{-- <div class="col-md-6">
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Card title</h5>
@@ -27,23 +43,31 @@
 
                           </div>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                            <p class="card-text">Department</p>
-
-                          </div>
-                    </div>
-                </div>
+                </div> --}}
             </div>
         </div>
 
     </div>
 
 </div>
+
+<script>
+    $(document).ready(function () {
+        // console.log('test');
+        $('#searchBox').on('keyup', function (){
+            // console.log($(this).val());
+            let searchInput = $(this).val();
+            $.ajax({
+                url:"{{ url('/search') }}",
+                data: { key : searchInput},
+                success: function(response){
+                    console.log('succeess');
+                    $('#result').html($(response).find('#result').html());
+                }
+            })
+        });
+    });
+</script>
 </body>
 </html>
 

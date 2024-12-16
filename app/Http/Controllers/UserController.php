@@ -9,11 +9,11 @@ class UserController extends Controller
 {
     public function index()
     {
-        return view('home');
+        return view('home',['users'=>'']);
     }
     public function search(Request $request)
     {
-        $search = $request->input('search');
+        $search = $request->input('key');
         $users = User::with('department','designation')
         ->where('name', 'LIKE', "%{$search}%")
         ->orWhereHas('department',fn($query) => $query->where('name','LIKE',"%{$search}%"))
