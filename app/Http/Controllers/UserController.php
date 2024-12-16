@@ -9,7 +9,8 @@ class UserController extends Controller
 {
     public function index()
     {
-        return view('home',['users'=>'']);
+        $users = User::all();
+        return view('home',['users'=>$users]);
     }
     public function search(Request $request)
     {
