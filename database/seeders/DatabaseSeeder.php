@@ -2,8 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Designation;
-use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -28,7 +26,11 @@ class DatabaseSeeder extends Seeder
         ]);
         \DB::table('users')->insert([
             ['name' => 'ashiq', 'department_id' => 1, 'designation_id' => 2, 'phone_number' => '1234567890', 'created_at' => now()],
-            ['name' => 'John', 'department_id' => 2, 'designation_id' => 1, 'phone_number' => '0987654321', 'created_at' => now()],
+            ['name' => 'John', 'department_id' => 2, 'designation_id' => 1, 'phone_number' => '0987652341', 'created_at' => now()],
+            ['name' => 'James', 'department_id' => 2, 'designation_id' => 3, 'phone_number' => '0987654321', 'created_at' => now()],
+            ['name' => 'Kevin', 'department_id' => 1, 'designation_id' => 2, 'phone_number' => '0987657891', 'created_at' => now()],
+            ['name' => 'Micle', 'department_id' => 1, 'designation_id' => 1, 'phone_number' => '09823454321', 'created_at' => now()],
+            ['name' => 'Soniya', 'department_id' => 3, 'designation_id' => 3, 'phone_number' => '0987655678', 'created_at' => now()],
         ]);
     }
 }

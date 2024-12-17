@@ -6,11 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class User extends Model
 {
+    protected $hidden = ['id','phone_number','department_id','designation_id'];
 
-    public function department(){
+    public function department()
+    {
         return $this->belongsTo(Department::class);
     }
-    public function designation(){
+    public function designation()
+    {
         return $this->belongsTo(Designation::class);
     }
 }

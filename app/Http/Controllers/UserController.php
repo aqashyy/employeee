@@ -21,6 +21,7 @@ class UserController extends Controller
         ->orWhereHas('designation',fn($query) => $query->where('name','LIKE',"%{$search}%"))
         ->get();
 
-        return view('home',['users' => $users,'search' => $search]);
+        // return view('home',['users' => $users,'search' => $search]);
+        return response()->json($users);
     }
 }
